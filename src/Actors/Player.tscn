@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/player/strong guy/Normal Guy Transforms/Normal_Guy_Transforms_SpriteSheet.png" type="Texture" id=2]
@@ -62,8 +62,13 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 8, 11 )
 
-[sub_resource type="CircleShape2D" id=5]
-radius = 6.0
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 5.71332
+height = 9.19903
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 6.23941
+height = 8.9636
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 20
@@ -145,7 +150,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="LeftHitShape" type="CollisionShape2D" parent="LeftHit"]
-position = Vector2( -15, -11 )
+position = Vector2( -13.5707, -9.46859 )
 shape = SubResource( 5 )
 
 [node name="RightHit" type="Area2D" parent="."]
@@ -153,5 +158,5 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="RightHitShape" type="CollisionShape2D" parent="RightHit"]
-position = Vector2( 15, -11 )
-shape = SubResource( 5 )
+position = Vector2( 14.0812, -9.2644 )
+shape = SubResource( 6 )

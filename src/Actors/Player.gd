@@ -14,7 +14,6 @@ onready var animation_player = $AnimationPlayer
 onready var shoot_timer = $ShootAnimation
 onready var sprite = $Sprite
 onready var sound_jump = $Jump
-onready var gun = sprite.get_node(@"Gun")
 onready var left_hitbox = $LeftHit
 onready var right_hitbox = $RightHit
 
@@ -85,10 +84,12 @@ func _physics_process(_delta):
 		for body in left_hitbox.get_overlapping_bodies():
 			if body is Enemy:
 				body.destroy()
+				emit_signal("collect_coin")
 	elif Input.is_action_just_pressed("move_right" + action_suffix):
 		for body in right_hitbox.get_overlapping_bodies():
 			if body is Enemy:
 				body.destroy()
+				emit_signal("collect_coin")
 
 	var animation = get_new_animation(is_shooting)
 	if animation != animation_player.current_animation and shoot_timer.is_stopped():

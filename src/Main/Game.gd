@@ -7,6 +7,8 @@ extends Node
 # that is to say, another node or script should not access them.
 onready var _pause_menu = $InterfaceLayer/PauseMenu
 
+onready var enemyScene = preload("res://src/Actors/Enemy.tscn")
+
 
 func _init():
 	OS.min_window_size = OS.window_size
@@ -48,3 +50,16 @@ func _unhandled_input(event):
 		else:
 			# warning-ignore:return_value_discarded
 			get_tree().change_scene("res://src/Main/Splitscreen.tscn")
+
+func spawn_random():
+	var enemy = enemyScene.instance()
+	var i = randi() % 2
+	if i == 0:
+		enemy.set_position($LeftSpawner.position)
+	else:
+		enemy.set_position($RightSpawner.position)
+		enemy.reverse()
+	$Enemies.add_child(enemy)
+
+func _on_SpawnTimer_timeout():
+	spawn_random()

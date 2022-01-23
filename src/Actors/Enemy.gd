@@ -15,10 +15,12 @@ onready var floor_detector_right = $FloorDetectorRight
 onready var sprite = $Sprite
 onready var animation_player = $AnimationPlayer
 
+var _pointing_right = 1
+
 # This function is called when the scene enters the scene tree.
 # We can initialize variables here.
 func _ready():
-	_velocity.x = speed.x
+	_velocity.x = speed.x * _pointing_right
 
 # Physics process is a built-in loop in Godot.
 # If you define _physics_process on a node, Godot will call it every frame.
@@ -37,10 +39,7 @@ func _ready():
 #   you can easily move individual functions.
 func _physics_process(_delta):
 	# If the enemy encounters a wall or an edge, the horizontal velocity is flipped.
-	if not floor_detector_left.is_colliding():
-		_velocity.x = speed.x
-	elif not floor_detector_right.is_colliding():
-		_velocity.x = -speed.x
+
 
 	#if is_on_wall():
 	#	_velocity.x *= -1
@@ -74,3 +73,7 @@ func get_new_animation():
 	else:
 		animation_new = "destroy"
 	return animation_new
+
+
+func reverse():
+	_pointing_right *= -1

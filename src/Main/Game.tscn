@@ -13,7 +13,7 @@ script = ExtResource( 2 )
 scale = Vector2( 2, 2 )
 
 [node name="Player" parent="Level" instance=ExtResource( 4 )]
-position = Vector2( -2, 237 )
+position = Vector2( -3, 261 )
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -32,4 +32,5 @@ autostart = true
 
 [node name="Enemies" type="Node2D" parent="."]
 pause_mode = 1
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

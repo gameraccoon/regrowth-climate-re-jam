@@ -12,6 +12,7 @@ export(String) var action_suffix = ""
 onready var platform_detector = $PlatformDetector
 onready var animation_player = $AnimationPlayer
 onready var shoot_timer = $ShootAnimation
+onready var shoot_damage_timer = $ShootDamage
 onready var sprite = $Sprite
 onready var sound_jump = $Jump
 onready var left_hitbox = $LeftHit
@@ -67,12 +68,16 @@ func _physics_process(_delta):
 		_velocity, snap_vector, FLOOR_NORMAL, not is_on_platform, 4, 0.9, false
 	)
 
+
+	var direction_changed = false
 	# When the character’s direction changes, we want to to scale the Sprite accordingly to flip it.
 	# This will make Robi face left or right depending on the direction you move.
 	if direction.x != 0:
 		if direction.x > 0:
+			direction_changed = sprite.scale.x < 0
 			sprite.scale.x = 1
 		else:
+			direction_changed = sprite.scale.x > 0
 			sprite.scale.x = -1
 
 	# We use the sprite's scale to store Robi’s look direction which allows us to shoot
@@ -81,22 +86,16 @@ func _physics_process(_delta):
 	# creating new variables.
 	var is_shooting = false
 	if Input.is_action_just_pressed("move_left" + action_suffix):
-		for body in left_hitbox.get_overlapping_bodies():
-			if body is Enemy:
-				body.destroy()
-				emit_signal("collect_coin")
+		is_shooting = true
 	elif Input.is_action_just_pressed("move_right" + action_suffix):
-		for body in right_hitbox.get_overlapping_bodies():
-			if body is Enemy:
-				body.destroy()
-				emit_signal("collect_coin")
+		is_shooting = true
 
 	var animation = get_new_animation(is_shooting)
-	if animation != animation_player.current_animation and shoot_timer.is_stopped():
+	if (animation != animation_player.current_animation or direction_changed) and shoot_timer.is_stopped():
 		if is_shooting:
 			shoot_timer.start()
+			shoot_damage_timer.start()
 		animation_player.play(animation)
-
 
 func get_direction():
 	return Vector2(
@@ -137,5 +136,18 @@ func get_new_animation(is_shooting = false):
 		else:
 			animation_new = "jumping"
 	if is_shooting:
-		animation_new += "_weapon"
+		animation_new = "attack"
 	return animation_new
+
+
+func _on_ShootDamage_timeout():
+	if sprite.scale.x < 0:
+		for body in left_hitbox.get_overlapping_bodies():
+			if body is Enemy:
+				body.destroy()
+				emit_signal("collect_coin")
+	else:
+		for body in right_hitbox.get_overlapping_bodies():
+			if body is Enemy:
+				body.destroy()
+				emit_signal("collect_coin")

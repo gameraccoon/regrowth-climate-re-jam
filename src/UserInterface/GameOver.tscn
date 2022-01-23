@@ -1,0 +1,117 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/theme/user_interface.tres" type="Theme" id=1]
+[ext_resource path="res://src/UserInterface/GameOver.gd" type="Script" id=2]
+
+[node name="GameOver" type="Control"]
+margin_right = 803.0
+margin_bottom = 481.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 43.0
+margin_top = 24.0
+margin_right = 753.0
+margin_bottom = 453.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="Label" parent="Panel"]
+margin_left = 263.163
+margin_top = 49.9862
+margin_right = 430.163
+margin_bottom = 87.9862
+text = "Game over"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LostTitle" type="Label" parent="Panel"]
+margin_left = 18.4138
+margin_top = 93.6862
+margin_right = 200.414
+margin_bottom = 131.686
+rect_pivot_offset = Vector2( 153.502, 80.3448 )
+text = "MONEY LOST:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LostAmount" type="Label" parent="Panel"]
+margin_left = 19.4541
+margin_top = 137.66
+margin_right = 308.454
+margin_bottom = 175.66
+rect_pivot_offset = Vector2( 153.502, 80.3448 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DamageTitle" type="Label" parent="Panel"]
+margin_left = 400.232
+margin_top = 103.845
+margin_right = 689.232
+margin_bottom = 141.845
+rect_pivot_offset = Vector2( 153.502, 80.3448 )
+text = "PROPERTY DAMAGE:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DamageAmount" type="Label" parent="Panel"]
+margin_left = 401.904
+margin_top = 150.961
+margin_right = 591.904
+margin_bottom = 229.961
+rect_pivot_offset = Vector2( 153.502, 80.3448 )
+text = "
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LossTitle" type="Label" parent="Panel"]
+margin_left = 13.5734
+margin_top = 236.162
+margin_right = 302.573
+margin_bottom = 274.162
+rect_pivot_offset = Vector2( 153.502, 80.3448 )
+text = "TOTAL LOSS:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LossAmount" type="Label" parent="Panel"]
+margin_left = 307.812
+margin_top = 237.702
+margin_right = 497.812
+margin_bottom = 316.702
+rect_pivot_offset = Vector2( 153.502, 80.3448 )
+text = "
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Label" type="Label" parent="Node2D"]
+margin_left = 96.0
+margin_top = 697.046
+margin_right = 1325.0
+margin_bottom = 940.046
+text = "Made with GODOT
+Used assets:
+Sounds, music, UI and art from \"Platformer 2d demo\" by godot
+\"a normal guy that gets super strong normal guy\" by kalann
+\"brawler asset character\" by chasersgaming"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

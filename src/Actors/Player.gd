@@ -21,6 +21,7 @@ onready var hitbox = $Hitbox
 
 var health = 10
 var start_anim_finished = false
+var is_died = false
 
 func _ready():
 	pass
@@ -101,12 +102,6 @@ func _physics_process(_delta):
 				body.destroy()
 				emit_signal("collect_coin")
 
-	var animation = get_new_animation(is_shooting)
-	if (animation != animation_player.current_animation or direction_changed) and shoot_timer.is_stopped():
-		if is_shooting:
-			shoot_timer.start()
-		animation_player.play(animation)
-
 	$Sprite/IdleSprite.modulate = Color(1, 1, 1)
 	for body in hitbox.get_overlapping_bodies():
 		if body is Enemy and not body.is_dead():
@@ -117,7 +112,15 @@ func _physics_process(_delta):
 			
 			if health == 0:
 				emit_signal("died")
+				is_died = true
+				$Sprite/IdleSprite.modulate = Color(1, 1, 1)
 			break
+
+	var animation = get_new_animation(is_shooting)
+	if (animation != animation_player.current_animation or direction_changed) and shoot_timer.is_stopped():
+		if is_shooting:
+			shoot_timer.start()
+		animation_player.play(animation)
 
 func get_direction():
 	return Vector2(
@@ -159,8 +162,14 @@ func get_new_animation(is_shooting = false):
 			animation_new = "jumping"
 	if is_shooting:
 		animation_new = "attack"
+	if is_died:
+		animation_new = "die"
 	return animation_new
 
 
 func _start_animation_finished():
 	start_anim_finished = true
+
+
+func _death_animation_finished():
+	$AnimationPlayer.stop()

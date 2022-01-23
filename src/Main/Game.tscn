@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/UserInterface/PauseMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main/Game.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/art/background/room.png" type="Texture" id=5]
 [ext_resource path="res://src/UserInterface/Roulette.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/UserInterface/GameOver.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 417.966, 10 )
@@ -23,7 +24,7 @@ texture = ExtResource( 5 )
 scale = Vector2( 2, 2 )
 
 [node name="Player" parent="Level" instance=ExtResource( 4 )]
-position = Vector2( -3, 261 )
+position = Vector2( -3, 260.463 )
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -33,6 +34,11 @@ margin_left = -0.721985
 margin_top = -0.0902557
 margin_right = -0.721985
 margin_bottom = -0.090271
+
+[node name="GameOver" parent="InterfaceLayer" instance=ExtResource( 7 )]
+visible = false
+margin_right = 798.0
+margin_bottom = 478.0
 
 [node name="PauseMenu" parent="InterfaceLayer" instance=ExtResource( 1 )]
 visible = false
@@ -64,5 +70,6 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( -5.37076, 532.658 )
 shape = SubResource( 1 )
+[connection signal="died" from="Level/Player" to="." method="_on_Player_died"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="timeout" from="SpawnStartTimer" to="." method="_on_SpawnStartTimer_timeout"]

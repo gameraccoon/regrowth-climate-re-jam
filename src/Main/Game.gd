@@ -4,7 +4,8 @@ extends Node
 
 enum State {
 	ROULETTE,
-	FIGHT
+	FIGHT,
+	GAME_OVER
 }
 
 var _state = State.ROULETTE
@@ -77,3 +78,13 @@ func start_fight():
 
 func is_fight():
 	return _state == State.FIGHT
+
+
+func _on_Player_died():
+	_state = State.GAME_OVER
+	$SpawnTimer.stop()
+	for child in $Enemies.get_children():
+		child.queue_free()
+
+	$InterfaceLayer/GameOver.set_visible(true)
+	$InterfaceLayer/GameOver.set_values($InterfaceLayer/Roulette/Chips.get_stake(), $InterfaceLayer/PauseMenu/ColorRect/CoinsCounter.coins_collected)

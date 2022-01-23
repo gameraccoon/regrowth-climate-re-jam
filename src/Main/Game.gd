@@ -60,8 +60,13 @@ func spawn_random():
 	else:
 		enemy.set_position($RightSpawner.position)
 		enemy.reverse()
+	enemy.target = $Level/Player
 	$Enemies.add_child(enemy)
 
 
 func _on_SpawnTimer_timeout():
 	spawn_random()
+
+
+func _on_SpawnStartTimer_timeout():
+	$SpawnTimer.start()

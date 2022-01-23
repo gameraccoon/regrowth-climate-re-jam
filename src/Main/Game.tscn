@@ -1,13 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/UserInterface/PauseMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main/Game.gd" type="Script" id=2]
 [ext_resource path="res://src/Level/Level.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/art/background/room.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 417.966, 10 )
 
 [node name="Game" type="Node"]
 pause_mode = 2
 script = ExtResource( 2 )
+
+[node name="room" type="Sprite" parent="."]
+position = Vector2( 32.7667, 385.135 )
+scale = Vector2( 0.28948, 0.28948 )
+texture = ExtResource( 5 )
 
 [node name="Level" parent="." instance=ExtResource( 3 )]
 scale = Vector2( 2, 2 )
@@ -28,6 +37,9 @@ position = Vector2( -312.244, 468.905 )
 position = Vector2( 282.168, 468.332 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="SpawnStartTimer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -37,4 +49,13 @@ pause_mode = 1
 position = Vector2( -0.782959, 474.332 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -5.37076, 532.658 )
+shape = SubResource( 1 )
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="timeout" from="SpawnStartTimer" to="." method="_on_SpawnStartTimer_timeout"]

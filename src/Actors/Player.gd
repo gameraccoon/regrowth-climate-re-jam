@@ -51,8 +51,10 @@ func _physics_process(_delta):
 		animation_player.play("start")
 		return
 
+	var is_shooting = false
 	# Play jump sound
 	if Input.is_action_just_pressed("jump" + action_suffix) and is_on_floor():
+		is_shooting = true # attack on jump
 		sound_jump.play()
 
 	var direction = get_direction()
@@ -84,16 +86,14 @@ func _physics_process(_delta):
 	# bullets forward.
 	# There are many situations like these where you can reuse existing properties instead of
 	# creating new variables.
-	var is_shooting = false
 	if Input.is_action_just_pressed("move_left" + action_suffix):
 		is_shooting = true
-		for body in left_hitbox.get_overlapping_bodies():
-			if body is Enemy:
-				body.destroy()
-				emit_signal("collect_coin")
 	elif Input.is_action_just_pressed("move_right" + action_suffix):
 		is_shooting = true
-		for body in right_hitbox.get_overlapping_bodies():
+		
+	if is_shooting:
+		var hit_hitbox = right_hitbox if sprite.scale.x > 0 else left_hitbox
+		for body in hit_hitbox.get_overlapping_bodies():
 			if body is Enemy:
 				body.destroy()
 				emit_signal("collect_coin")
@@ -103,10 +103,10 @@ func _physics_process(_delta):
 		if is_shooting:
 			shoot_timer.start()
 		animation_player.play(animation)
-	
+
 	$Sprite/IdleSprite.modulate = Color(1, 1, 1)
 	for body in hitbox.get_overlapping_bodies():
-		if body is Enemy:
+		if body is Enemy and not body.is_dead():
 			--health
 			sound_jump.play()
 			$Sprite/IdleSprite.modulate = Color(1, 0, 0)

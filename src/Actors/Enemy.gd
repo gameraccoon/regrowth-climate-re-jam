@@ -4,6 +4,7 @@ extends Actor
 
 enum State {
 	WALKING,
+	ATTACKING,
 	DEAD,
 }
 
@@ -12,10 +13,13 @@ var _state = State.WALKING
 onready var platform_detector = $PlatformDetector
 onready var floor_detector_left = $FloorDetectorLeft
 onready var floor_detector_right = $FloorDetectorRight
-onready var sprite = $Sprite
+onready var sprite = $SpriteScaler/Sprite
 onready var animation_player = $AnimationPlayer
 
 var _pointing_right = 1
+
+var reach_distance = 10.0
+var target = null
 
 # This function is called when the scene enters the scene tree.
 # We can initialize variables here.
@@ -41,18 +45,19 @@ func _ready():
 func _physics_process(_delta):
 	# If the enemy encounters a wall or an edge, the horizontal velocity is flipped.
 
+	if target != null and _state == State.WALKING:
+		if abs(target.position.x - position.x) < reach_distance:
+			_state = State.ATTACKING
 
-	#if is_on_wall():
-	#	_velocity.x *= -1
+	if _state == State.WALKING:
+		# We only update the y value of _velocity as we want to handle the horizontal movement ourselves.
+		_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
 
-	# We only update the y value of _velocity as we want to handle the horizontal movement ourselves.
-	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
-
-	# We flip the Sprite depending on which way the enemy is moving.
-	if _velocity.x > 0:
-		sprite.scale.x = 1
-	else:
-		sprite.scale.x = -1
+		# We flip the Sprite depending on which way the enemy is moving.
+		if _velocity.x > 0:
+			sprite.scale.x = 1
+		else:
+			sprite.scale.x = -1
 
 	var animation = get_new_animation()
 	if animation != animation_player.current_animation:
@@ -67,14 +72,16 @@ func destroy():
 func get_new_animation():
 	var animation_new = ""
 	if _state == State.WALKING:
-		if _velocity.x == 0:
-			animation_new = "idle"
-		else:
-			animation_new = "walk"
-	else:
+		animation_new = "walk"
+	elif _state == State.DEAD:
 		animation_new = "destroy"
+	elif _state == State.ATTACKING:
+		animation_new = "attack"
 	return animation_new
 
 
 func reverse():
 	_pointing_right *= -1
+
+func is_dead():
+	return _state == State.DEAD

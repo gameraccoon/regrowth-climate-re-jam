@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/UserInterface/PauseMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main/Game.gd" type="Script" id=2]
 [ext_resource path="res://src/Level/Level.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/Actors/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/art/background/room.png" type="Texture" id=5]
+[ext_resource path="res://src/UserInterface/Roulette.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 417.966, 10 )
@@ -27,6 +28,12 @@ position = Vector2( -3, 261 )
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 layer = 100
 
+[node name="Roulette" parent="InterfaceLayer" instance=ExtResource( 6 )]
+margin_left = -0.721985
+margin_top = -0.0902557
+margin_right = -0.721985
+margin_bottom = -0.090271
+
 [node name="PauseMenu" parent="InterfaceLayer" instance=ExtResource( 1 )]
 visible = false
 
@@ -40,7 +47,7 @@ position = Vector2( 282.168, 468.332 )
 
 [node name="SpawnStartTimer" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true
+one_shot = true
 
 [node name="Enemies" type="Node2D" parent="."]
 pause_mode = 1

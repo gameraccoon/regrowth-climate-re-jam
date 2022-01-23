@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://assets/theme/user_interface.tres" type="Theme" id=1]
+[ext_resource path="res://assets/art/background/circle.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/background/table.png" type="Texture" id=3]
+[ext_resource path="res://src/Objects/chips.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/UserInterface/Roulette.gd" type="Script" id=5]
+
+[node name="Roulette" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.294118 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="table" type="Sprite" parent="."]
+position = Vector2( 385.468, 246.035 )
+scale = Vector2( 0.508231, 0.508231 )
+texture = ExtResource( 3 )
+
+[node name="circle" type="Sprite" parent="table"]
+position = Vector2( -305.22, -6.10352e-05 )
+texture = ExtResource( 2 )
+offset = Vector2( 2, -2 )
+
+[node name="Chips" parent="." instance=ExtResource( 4 )]
+position = Vector2( 550.494, 358.955 )
+scale = Vector2( 0.3, 0.3 )
+
+[node name="BlackBtn" type="Button" parent="."]
+margin_left = 641.226
+margin_top = 225.438
+margin_right = 746.226
+margin_bottom = 275.438
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="BlackBtn"]
+margin_left = 7.92224
+margin_top = 5.28152
+margin_right = 98.9222
+margin_bottom = 43.2815
+text = "Black"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RedBtn" type="Button" parent="."]
+margin_left = 642.336
+margin_top = 290.219
+margin_right = 746.336
+margin_bottom = 336.219
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="RedBtn"]
+margin_left = 24.4103
+margin_top = 3.32867
+margin_right = 81.4103
+margin_bottom = 41.3287
+text = "Red"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 23.2134
+margin_top = 17.0232
+margin_right = 182.213
+margin_bottom = 86.0232
+
+[node name="ChipsCountLabel" type="Label" parent="Panel"]
+margin_left = 17.0232
+margin_top = 13.9281
+margin_right = 173.023
+margin_bottom = 71.9281
+text = "Chips: 1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_all_completed"]
+[connection signal="pressed" from="BlackBtn" to="." method="_on_BlackBtn_pressed"]
+[connection signal="pressed" from="RedBtn" to="." method="_on_RedBtn_pressed"]

@@ -4,6 +4,7 @@ extends Actor
 
 # warning-ignore:unused_signal
 signal collect_coin()
+signal died()
 
 const FLOOR_DETECT_DISTANCE = 20.0
 
@@ -12,15 +13,14 @@ export(String) var action_suffix = ""
 onready var platform_detector = $PlatformDetector
 onready var animation_player = $AnimationPlayer
 onready var shoot_timer = $ShootAnimation
-onready var start_timer = $StartTimer
 onready var sprite = $Sprite
 onready var sound_jump = $Jump
 onready var left_hitbox = $LeftHit
 onready var right_hitbox = $RightHit
 onready var hitbox = $Hitbox
 
-var health = 100
-
+var health = 10
+var start_anim_finished = false
 
 func _ready():
 	pass
@@ -47,7 +47,10 @@ func collided_left():
 # - If you split the character into a state machine or more advanced pattern,
 #   you can easily move individual functions.
 func _physics_process(_delta):
-	if not start_timer.is_stopped():
+	if not get_parent().get_parent().is_fight():
+		return
+
+	if not start_anim_finished:
 		animation_player.play("start")
 		return
 
@@ -107,10 +110,13 @@ func _physics_process(_delta):
 	$Sprite/IdleSprite.modulate = Color(1, 1, 1)
 	for body in hitbox.get_overlapping_bodies():
 		if body is Enemy and not body.is_dead():
-			--health
+			health -= 1
 			sound_jump.play()
 			$Sprite/IdleSprite.modulate = Color(1, 0, 0)
 			# damage only once per frame
+			
+			if health == 0:
+				emit_signal("died")
 			break
 
 func get_direction():
@@ -154,3 +160,7 @@ func get_new_animation(is_shooting = false):
 	if is_shooting:
 		animation_new = "attack"
 	return animation_new
+
+
+func _start_animation_finished():
+	start_anim_finished = true

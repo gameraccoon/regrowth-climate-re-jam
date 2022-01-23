@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/art/background/chip.png" type="Texture" id=1]
+[ext_resource path="res://src/Objects/chips.gd" type="Script" id=2]
+
+[node name="Chips" type="Node2D"]
+script = ExtResource( 2 )
+chips = [ NodePath("chip"), NodePath("chip2"), NodePath("chip3"), NodePath("chip4"), NodePath("chip5"), NodePath("chip6"), NodePath("chip7"), NodePath("chip8"), NodePath("chip9"), NodePath("chip10"), NodePath("chip11"), NodePath("chip12") ]
+
+[node name="chip" type="Sprite" parent="."]
+position = Vector2( 31.7535, -31.031 )
+texture = ExtResource( 1 )
+offset = Vector2( -31.7535, 31.031 )
+
+[node name="chip6" type="Sprite" parent="."]
+position = Vector2( -276.819, -123.854 )
+texture = ExtResource( 1 )
+offset = Vector2( 275.147, 146.432 )
+
+[node name="chip9" type="Sprite" parent="."]
+position = Vector2( -257.586, -99.6028 )
+texture = ExtResource( 1 )
+offset = Vector2( 275.147, 146.432 )
+
+[node name="chip7" type="Sprite" parent="."]
+position = Vector2( -210.756, -103.784 )
+texture = ExtResource( 1 )
+offset = Vector2( 275.147, 146.432 )
+
+[node name="chip8" type="Sprite" parent="."]
+position = Vector2( -341.21, -101.275 )
+texture = ExtResource( 1 )
+offset = Vector2( 275.147, 146.432 )
+
+[node name="chip5" type="Sprite" parent="."]
+position = Vector2( -227.481, -147.268 )
+texture = ExtResource( 1 )
+offset = Vector2( 275.147, 146.432 )
+
+[node name="chip4" type="Sprite" parent="."]
+position = Vector2( -317.795, -150.613 )
+texture = ExtResource( 1 )
+offset = Vector2( 275.147, 146.432 )
+
+[node name="chip2" type="Sprite" parent="."]
+position = Vector2( -275.983, -161.485 )
+texture = ExtResource( 1 )
+offset = Vector2( 275.147, 146.432 )
+
+[node name="chip3" type="Sprite" parent="."]
+position = Vector2( -277.656, -176.537 )
+texture = ExtResource( 1 )
+offset = Vector2( 275.147, 146.432 )
+
+[node name="chip12" type="Sprite" parent="."]
+position = Vector2( -318.631, -185.736 )
+texture = ExtResource( 1 )
+offset = Vector2( 275.147, 146.432 )
+
+[node name="chip10" type="Sprite" parent="."]
+position = Vector2( -252.568, -202.46 )
+texture = ExtResource( 1 )
+offset = Vector2( 275.147, 146.432 )
+
+[node name="chip11" type="Sprite" parent="."]
+position = Vector2( -276.819, -229.22 )
+texture = ExtResource( 1 )
+offset = Vector2( 275.147, 146.432 )

@@ -2,10 +2,17 @@ extends Node
 # This class contains controls that should always be accessible, like pausing
 # the game or toggling the window full-screen.
 
+enum State {
+	ROULETTE,
+	FIGHT
+}
+
+var _state = State.ROULETTE
 
 # The "_" prefix is a convention to indicate that variables are private,
 # that is to say, another node or script should not access them.
 onready var _pause_menu = $InterfaceLayer/PauseMenu
+onready var _roulette_window = $InterfaceLayer/Roulette
 
 onready var enemyScene = preload("res://src/Actors/Enemy.tscn")
 
@@ -13,6 +20,7 @@ onready var enemyScene = preload("res://src/Actors/Enemy.tscn")
 func _init():
 	OS.min_window_size = OS.window_size
 	OS.max_window_size = OS.get_screen_size()
+	randomize()
 
 
 func _notification(what):
@@ -40,17 +48,6 @@ func _unhandled_input(event):
 			_pause_menu.close()
 		get_tree().set_input_as_handled()
 
-	elif event.is_action_pressed("splitscreen"):
-		if name == "Splitscreen":
-			# We need to clean up a little bit first to avoid Viewport errors.
-			$Black/SplitContainer/ViewportContainer1.free()
-			$Black.queue_free()
-			# warning-ignore:return_value_discarded
-			get_tree().change_scene("res://src/Main/Game.tscn")
-		else:
-			# warning-ignore:return_value_discarded
-			get_tree().change_scene("res://src/Main/Splitscreen.tscn")
-
 
 func spawn_random():
 	var enemy = enemyScene.instance()
@@ -70,3 +67,13 @@ func _on_SpawnTimer_timeout():
 
 func _on_SpawnStartTimer_timeout():
 	$SpawnTimer.start()
+
+
+func start_fight():
+	$SpawnStartTimer.start()
+	_state = State.FIGHT
+	$InterfaceLayer/Roulette.set_visible(false)
+
+
+func is_fight():
+	return _state == State.FIGHT

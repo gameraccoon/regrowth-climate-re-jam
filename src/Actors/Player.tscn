@@ -207,6 +207,20 @@ tracks/4/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
 }
+tracks/5/type = "method"
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 10 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_start_animation_finished"
+} ]
+}
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 4.29182, 11 )
@@ -283,11 +297,9 @@ visibility_mode = 1
 
 [node name="IdleSprite" type="Sprite" parent="Sprite"]
 position = Vector2( 0, -12 )
-texture = ExtResource( 2 )
-offset = Vector2( 4, 0 )
-vframes = 5
-hframes = 4
-frame = 2
+texture = ExtResource( 9 )
+vframes = 6
+hframes = 5
 
 [node name="LeftHit" type="Area2D" parent="."]
 collision_layer = 2
@@ -304,11 +316,6 @@ collision_mask = 2
 [node name="RightHitShape" type="CollisionShape2D" parent="RightHit"]
 position = Vector2( 13.877, -9.77487 )
 shape = SubResource( 6 )
-
-[node name="StartTimer" type="Timer" parent="."]
-wait_time = 3.8
-one_shot = true
-autostart = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2

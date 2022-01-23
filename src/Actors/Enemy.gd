@@ -20,6 +20,7 @@ var _pointing_right = 1
 # This function is called when the scene enters the scene tree.
 # We can initialize variables here.
 func _ready():
+	speed.x = speed.x + randf() * 100
 	_velocity.x = speed.x * _pointing_right
 
 # Physics process is a built-in loop in Godot.

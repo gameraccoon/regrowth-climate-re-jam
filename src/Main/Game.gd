@@ -51,6 +51,7 @@ func _unhandled_input(event):
 			# warning-ignore:return_value_discarded
 			get_tree().change_scene("res://src/Main/Splitscreen.tscn")
 
+
 func spawn_random():
 	var enemy = enemyScene.instance()
 	var i = randi() % 2
@@ -60,6 +61,7 @@ func spawn_random():
 		enemy.set_position($RightSpawner.position)
 		enemy.reverse()
 	$Enemies.add_child(enemy)
+
 
 func _on_SpawnTimer_timeout():
 	spawn_random()

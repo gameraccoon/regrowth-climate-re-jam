@@ -12,22 +12,18 @@ export(String) var action_suffix = ""
 onready var platform_detector = $PlatformDetector
 onready var animation_player = $AnimationPlayer
 onready var shoot_timer = $ShootAnimation
-onready var shoot_damage_timer = $ShootDamage
+onready var start_timer = $StartTimer
 onready var sprite = $Sprite
 onready var sound_jump = $Jump
 onready var left_hitbox = $LeftHit
 onready var right_hitbox = $RightHit
+onready var hitbox = $Hitbox
+
+var health = 100
 
 
 func _ready():
-	# Static types are necessary here to avoid warnings.
-	var camera: Camera2D = $Camera
-	if action_suffix == "_p1":
-		camera.custom_viewport = $"../.."
-	elif action_suffix == "_p2":
-		var viewport: Viewport = $"../../../../ViewportContainer2/Viewport"
-		viewport.world_2d = ($"../.." as Viewport).world_2d
-		camera.custom_viewport = viewport
+	pass
 
 func collided_left():
 	pass
@@ -51,6 +47,10 @@ func collided_left():
 # - If you split the character into a state machine or more advanced pattern,
 #   you can easily move individual functions.
 func _physics_process(_delta):
+	if not start_timer.is_stopped():
+		animation_player.play("start")
+		return
+
 	# Play jump sound
 	if Input.is_action_just_pressed("jump" + action_suffix) and is_on_floor():
 		sound_jump.play()
@@ -87,15 +87,31 @@ func _physics_process(_delta):
 	var is_shooting = false
 	if Input.is_action_just_pressed("move_left" + action_suffix):
 		is_shooting = true
+		for body in left_hitbox.get_overlapping_bodies():
+			if body is Enemy:
+				body.destroy()
+				emit_signal("collect_coin")
 	elif Input.is_action_just_pressed("move_right" + action_suffix):
 		is_shooting = true
+		for body in right_hitbox.get_overlapping_bodies():
+			if body is Enemy:
+				body.destroy()
+				emit_signal("collect_coin")
 
 	var animation = get_new_animation(is_shooting)
 	if (animation != animation_player.current_animation or direction_changed) and shoot_timer.is_stopped():
 		if is_shooting:
 			shoot_timer.start()
-			shoot_damage_timer.start()
 		animation_player.play(animation)
+	
+	$Sprite/IdleSprite.modulate = Color(1, 1, 1)
+	for body in hitbox.get_overlapping_bodies():
+		if body is Enemy:
+			--health
+			sound_jump.play()
+			$Sprite/IdleSprite.modulate = Color(1, 0, 0)
+			# damage only once per frame
+			break
 
 func get_direction():
 	return Vector2(
@@ -138,16 +154,3 @@ func get_new_animation(is_shooting = false):
 	if is_shooting:
 		animation_new = "attack"
 	return animation_new
-
-
-func _on_ShootDamage_timeout():
-	if sprite.scale.x < 0:
-		for body in left_hitbox.get_overlapping_bodies():
-			if body is Enemy:
-				body.destroy()
-				emit_signal("collect_coin")
-	else:
-		for body in right_hitbox.get_overlapping_bodies():
-			if body is Enemy:
-				body.destroy()
-				emit_signal("collect_coin")

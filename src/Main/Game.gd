@@ -74,6 +74,7 @@ func start_fight():
 	$SpawnStartTimer.start()
 	_state = State.FIGHT
 	$InterfaceLayer/Roulette.set_visible(false)
+	$Level/CasinoAmbient.stop()
 
 
 func is_fight():
@@ -97,3 +98,4 @@ func _on_Timer_timeout():
 func _on_Player_finished_stretching():
 	$TutorialTimer.start()
 	$Tutorial.visible = true
+	$Level/Music.play()

@@ -103,15 +103,16 @@ __meta__ = {
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Label" type="Label" parent="Node2D"]
-margin_left = 96.0
-margin_top = 697.046
-margin_right = 1325.0
-margin_bottom = 940.046
+margin_left = 93.0596
+margin_top = 655.881
+margin_right = 1322.06
+margin_bottom = 898.881
 text = "Made with GODOT
 Used assets:
 Sounds, music, UI and art from \"Platformer 2d demo\" by godot
 \"a normal guy that gets super strong normal guy\" by kalann
-\"brawler asset character\" by chasersgaming"
+\"brawler asset character\" by chasersgaming
+\"Casino Ambiance\" by DylanTheFish"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false

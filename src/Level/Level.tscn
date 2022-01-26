@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://assets/audio/music/casino-ambient.ogg" type="AudioStream" id=1]
 [ext_resource path="res://src/Level/Level.gd" type="Script" id=5]
 [ext_resource path="res://assets/audio/music/music.ogg" type="AudioStream" id=8]
 [ext_resource path="res://src/Level/Music.gd" type="Script" id=9]
@@ -10,5 +11,8 @@ script = ExtResource( 5 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-autoplay = true
 script = ExtResource( 9 )
+
+[node name="CasinoAmbient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+autoplay = true

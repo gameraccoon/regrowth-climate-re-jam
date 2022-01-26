@@ -4,6 +4,7 @@ extends Actor
 
 # warning-ignore:unused_signal
 signal collect_coin()
+signal finished_stretching()
 signal died()
 
 const FLOOR_DETECT_DISTANCE = 20.0
@@ -169,6 +170,7 @@ func get_new_animation(is_shooting = false):
 
 func _start_animation_finished():
 	start_anim_finished = true
+	emit_signal("finished_stretching")
 
 
 func _death_animation_finished():

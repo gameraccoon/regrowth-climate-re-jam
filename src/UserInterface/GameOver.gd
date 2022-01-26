@@ -15,6 +15,6 @@ func _ready():
 #func _process(delta):
 #	pass
 func set_values(lost, damage):
-	$Panel/LostAmount.set_text("%d000$" % lost)
-	$Panel/DamageAmount.set_text("%d000$" % damage)
-	$Panel/LossAmount.set_text("%d000$" % (damage + lost))
+	$Panel/LostAmount.set_text("%d$" % (lost * 1000))
+	$Panel/DamageAmount.set_text("%d$" % (damage * 1000))
+	$Panel/LossAmount.set_text("%d$" % ((damage + lost) * 1000))

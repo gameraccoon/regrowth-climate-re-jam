@@ -13,6 +13,7 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.784314 )
 margin_left = 43.0
 margin_top = 24.0
 margin_right = 753.0

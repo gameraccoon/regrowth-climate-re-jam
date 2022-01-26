@@ -88,3 +88,12 @@ func _on_Player_died():
 
 	$InterfaceLayer/GameOver.set_visible(true)
 	$InterfaceLayer/GameOver.set_values($InterfaceLayer/Roulette/Chips.get_stake(), $InterfaceLayer/PauseMenu/ColorRect/CoinsCounter.coins_collected)
+
+
+func _on_Timer_timeout():
+	$Tutorial.visible = false
+
+
+func _on_Player_finished_stretching():
+	$TutorialTimer.start()
+	$Tutorial.visible = true

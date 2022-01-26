@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/UserInterface/PauseMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main/Game.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/UserInterface/Roulette.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/UserInterface/GameOver.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/art/background/PressAD.png" type="Texture" id=8]
+[ext_resource path="res://src/UserInterface/Intro.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 417.966, 10 )
@@ -17,7 +18,7 @@ pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="room" type="Sprite" parent="."]
-position = Vector2( 32.7667, 385.135 )
+position = Vector2( 6.17392, 841.644 )
 scale = Vector2( 0.28948, 0.28948 )
 texture = ExtResource( 5 )
 
@@ -25,7 +26,7 @@ texture = ExtResource( 5 )
 scale = Vector2( 2, 2 )
 
 [node name="Player" parent="Level" instance=ExtResource( 4 )]
-position = Vector2( -3, 260.463 )
+position = Vector2( -16.2964, 488.718 )
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 layer = 100
@@ -41,14 +42,16 @@ visible = false
 margin_right = 798.0
 margin_bottom = 478.0
 
+[node name="Intro" parent="InterfaceLayer" instance=ExtResource( 9 )]
+
 [node name="PauseMenu" parent="InterfaceLayer" instance=ExtResource( 1 )]
 visible = false
 
 [node name="LeftSpawner" type="Node2D" parent="."]
-position = Vector2( -312.244, 468.905 )
+position = Vector2( -338.837, 925.414 )
 
 [node name="RightSpawner" type="Node2D" parent="."]
-position = Vector2( 282.168, 468.332 )
+position = Vector2( 255.575, 924.841 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
@@ -60,7 +63,7 @@ one_shot = true
 pause_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( -0.782959, 474.332 )
+position = Vector2( -27.3757, 930.841 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
 
@@ -69,7 +72,7 @@ collision_layer = 16
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -5.37076, 532.658 )
+position = Vector2( -31.9635, 989.167 )
 shape = SubResource( 1 )
 
 [node name="Tutorial" type="Sprite" parent="."]
@@ -82,6 +85,7 @@ wait_time = 3.0
 one_shot = true
 [connection signal="died" from="Level/Player" to="." method="_on_Player_died"]
 [connection signal="finished_stretching" from="Level/Player" to="." method="_on_Player_finished_stretching"]
+[connection signal="game_started" from="InterfaceLayer/Intro" to="." method="_on_Intro_game_started"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="timeout" from="SpawnStartTimer" to="." method="_on_SpawnStartTimer_timeout"]
 [connection signal="timeout" from="TutorialTimer" to="." method="_on_Timer_timeout"]

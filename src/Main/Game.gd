@@ -99,3 +99,7 @@ func _on_Player_finished_stretching():
 	$TutorialTimer.start()
 	$Tutorial.visible = true
 	$Level/Music.play()
+
+
+func _on_Intro_game_started():
+	$InterfaceLayer/Intro.hide()

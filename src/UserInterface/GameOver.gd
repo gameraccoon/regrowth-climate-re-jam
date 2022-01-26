@@ -18,3 +18,5 @@ func set_values(lost, damage):
 	$Panel/LostAmount.set_text("%d$" % (lost * 1000))
 	$Panel/DamageAmount.set_text("%d$" % (damage * 1000))
 	$Panel/LossAmount.set_text("%d$" % ((damage + lost) * 1000))
+
+# get_tree().reload_current_scene()

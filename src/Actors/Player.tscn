@@ -297,7 +297,7 @@ tracks/5/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 4.29182, 11 )
+extents = Vector2( 5.00647, 11.0275 )
 
 [sub_resource type="CapsuleShape2D" id=6]
 radius = 5.71332
@@ -372,9 +372,11 @@ visibility_mode = 1
 
 [node name="IdleSprite" type="Sprite" parent="Sprite"]
 position = Vector2( 0, -12 )
-texture = ExtResource( 9 )
-vframes = 6
-hframes = 5
+texture = ExtResource( 2 )
+offset = Vector2( 4, 0 )
+vframes = 5
+hframes = 4
+frame = 2
 
 [node name="LeftHit" type="Area2D" parent="."]
 collision_layer = 2

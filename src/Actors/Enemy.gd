@@ -18,7 +18,7 @@ onready var animation_player = $AnimationPlayer
 
 var _pointing_right = 1
 
-var reach_distance = 10.0
+var reach_distance = 20.0
 var target = null
 
 # This function is called when the scene enters the scene tree.
@@ -46,7 +46,9 @@ func _physics_process(_delta):
 	# If the enemy encounters a wall or an edge, the horizontal velocity is flipped.
 
 	if target != null and _state == State.WALKING:
-		if abs(target.position.x - position.x) < reach_distance:
+		var targetX = target.position.x
+		var posX = position.x
+		if abs(targetX - posX) < reach_distance:
 			_state = State.ATTACKING
 
 	if _state == State.WALKING:

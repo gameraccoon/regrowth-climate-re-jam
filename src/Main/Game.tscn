@@ -18,7 +18,7 @@ pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="room" type="Sprite" parent="."]
-position = Vector2( 6.17392, 841.644 )
+position = Vector2( 33.9978, 840.997 )
 scale = Vector2( 0.28948, 0.28948 )
 texture = ExtResource( 5 )
 
@@ -26,16 +26,12 @@ texture = ExtResource( 5 )
 scale = Vector2( 2, 2 )
 
 [node name="Player" parent="Level" instance=ExtResource( 4 )]
-position = Vector2( -16.2964, 488.718 )
+position = Vector2( 0, 488.718 )
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="."]
 layer = 100
 
 [node name="Roulette" parent="InterfaceLayer" instance=ExtResource( 6 )]
-margin_left = -0.721985
-margin_top = -0.0902557
-margin_right = -0.721985
-margin_bottom = -0.090271
 
 [node name="GameOver" parent="InterfaceLayer" instance=ExtResource( 7 )]
 visible = false
@@ -43,27 +39,31 @@ margin_right = 798.0
 margin_bottom = 478.0
 
 [node name="Intro" parent="InterfaceLayer" instance=ExtResource( 9 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="PauseMenu" parent="InterfaceLayer" instance=ExtResource( 1 )]
 visible = false
 
 [node name="LeftSpawner" type="Node2D" parent="."]
-position = Vector2( -338.837, 925.414 )
+position = Vector2( -288.468, 930.148 )
 
 [node name="RightSpawner" type="Node2D" parent="."]
-position = Vector2( 255.575, 924.841 )
+position = Vector2( 280.777, 923.479 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
 [node name="SpawnStartTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 4.0
 one_shot = true
 
 [node name="Enemies" type="Node2D" parent="."]
 pause_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( -27.3757, 930.841 )
+position = Vector2( -1.02371, 930.841 )
 current = true
 zoom = Vector2( 0.5, 0.5 )
 
@@ -77,7 +77,7 @@ shape = SubResource( 1 )
 
 [node name="Tutorial" type="Sprite" parent="."]
 visible = false
-position = Vector2( -7.931, 559.751 )
+position = Vector2( 0, 1023.99 )
 texture = ExtResource( 8 )
 
 [node name="TutorialTimer" type="Timer" parent="."]

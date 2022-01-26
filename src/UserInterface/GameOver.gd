@@ -19,4 +19,16 @@ func set_values(lost, damage):
 	$Panel/DamageAmount.set_text("%d$" % (damage * 1000))
 	$Panel/LossAmount.set_text("%d$" % ((damage + lost) * 1000))
 
-# get_tree().reload_current_scene()
+
+func open():
+	show()
+	$ShowButtonTimer.start()
+
+
+func _on_Button_pressed():
+	Autoload.skip_intro = true
+	get_tree().reload_current_scene()
+
+
+func _on_ShowButtonTimer_timeout():
+	$Button.show()

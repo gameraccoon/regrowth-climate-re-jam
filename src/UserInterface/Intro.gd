@@ -16,6 +16,9 @@ var currentLetter = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if Autoload.skip_intro:
+		emit_signal("game_started")
+		$TextFillTimer.stop()
 	text = texts[0]
 
 

@@ -87,7 +87,7 @@ func _on_Player_died():
 	for child in $Enemies.get_children():
 		child.queue_free()
 
-	$InterfaceLayer/GameOver.set_visible(true)
+	$InterfaceLayer/GameOver.open()
 	$InterfaceLayer/GameOver.set_values($InterfaceLayer/Roulette/Chips.get_stake(), $InterfaceLayer/PauseMenu/ColorRect/CoinsCounter.coins_collected)
 
 

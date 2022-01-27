@@ -7,7 +7,7 @@
 [ext_resource path="res://src/UserInterface/Roulette.gd" type="Script" id=5]
 [ext_resource path="res://assets/art/background/ball.png" type="Texture" id=6]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "bet_black"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Chips:position")
@@ -36,7 +36,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "bet_red"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Chips:position")
@@ -65,8 +65,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "black"
+[sub_resource type="Animation" id=3]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("table/CircleRotation/ballRotation:rotation_degrees")
@@ -93,8 +92,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "red"
+[sub_resource type="Animation" id=4]
 length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("table/CircleRotation/ballRotation:rotation_degrees")
@@ -208,7 +206,6 @@ texture = ExtResource( 3 )
 [node name="circle" type="Sprite" parent="table"]
 position = Vector2( -302, 0 )
 rotation = 4.47518
-scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 offset = Vector2( 3, -2 )
 
@@ -244,10 +241,10 @@ __meta__ = {
 }
 
 [node name="BallChipsAnimation" type="AnimationPlayer" parent="."]
-anims/bet_black = SubResource( 3 )
-anims/bet_red = SubResource( 4 )
-anims/black = SubResource( 1 )
-anims/red = SubResource( 2 )
+anims/bet_black = SubResource( 1 )
+anims/bet_red = SubResource( 2 )
+anims/black = SubResource( 3 )
+anims/red = SubResource( 4 )
 anims/reset_bet = SubResource( 5 )
 
 [node name="CircleAnimation" type="AnimationPlayer" parent="."]

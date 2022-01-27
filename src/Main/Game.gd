@@ -89,6 +89,9 @@ func _on_Player_died():
 func _on_Player_finished_stretching():
 	$Tutorial.visible = true
 	$Level/Music.play()
+	
+	if Autoload.skip_intro:
+		_on_Player_passed_tutorial()
 
 
 func _on_Intro_game_started():
@@ -100,5 +103,11 @@ func _on_Roulette_lost():
 
 
 func _on_Player_passed_tutorial():
-	$Tutorial.visible = false
-	$SpawnTimer.start()
+	if $Tutorial.visible:
+		$Tutorial.visible = false
+		$SpawnTimer.start()
+		$DifficultyTimer.start()
+
+
+func _on_DifficultyTimer_timeout():
+	$SpawnTimer.wait_time *= 0.8

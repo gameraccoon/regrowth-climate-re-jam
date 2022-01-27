@@ -120,7 +120,7 @@ func _physics_process(_delta):
 			break
 
 	var animation = get_new_animation(is_shooting)
-	if (animation != animation_player.current_animation or direction_changed) and shoot_timer.is_stopped():
+	if (animation != animation_player.current_animation or direction_changed) and (shoot_timer.is_stopped() or is_died):
 		if is_shooting:
 			hit_count += 1
 			if hit_count == 2:

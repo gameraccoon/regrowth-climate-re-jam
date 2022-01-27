@@ -71,9 +71,13 @@ shape = SubResource( 1 )
 visible = false
 position = Vector2( 0, 1023.99 )
 texture = ExtResource( 8 )
+
+[node name="DifficultyTimer" type="Timer" parent="."]
+wait_time = 10.0
 [connection signal="died" from="Level/Player" to="." method="_on_Player_died"]
 [connection signal="finished_stretching" from="Level/Player" to="." method="_on_Player_finished_stretching"]
 [connection signal="passed_tutorial" from="Level/Player" to="." method="_on_Player_passed_tutorial"]
 [connection signal="lost" from="InterfaceLayer/Roulette" to="." method="_on_Roulette_lost"]
 [connection signal="game_started" from="InterfaceLayer/Intro" to="." method="_on_Intro_game_started"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
+[connection signal="timeout" from="DifficultyTimer" to="." method="_on_DifficultyTimer_timeout"]

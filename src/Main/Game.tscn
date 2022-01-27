@@ -35,8 +35,6 @@ layer = 100
 
 [node name="GameOver" parent="InterfaceLayer" instance=ExtResource( 7 )]
 visible = false
-margin_right = 798.0
-margin_bottom = 478.0
 
 [node name="Intro" parent="InterfaceLayer" instance=ExtResource( 9 )]
 anchor_right = 1.0
@@ -52,10 +50,6 @@ position = Vector2( -288.468, 930.148 )
 position = Vector2( 280.777, 923.479 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
-
-[node name="SpawnStartTimer" type="Timer" parent="."]
-wait_time = 4.0
-one_shot = true
 
 [node name="Enemies" type="Node2D" parent="."]
 pause_mode = 1
@@ -77,13 +71,9 @@ shape = SubResource( 1 )
 visible = false
 position = Vector2( 0, 1023.99 )
 texture = ExtResource( 8 )
-
-[node name="TutorialTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
 [connection signal="died" from="Level/Player" to="." method="_on_Player_died"]
 [connection signal="finished_stretching" from="Level/Player" to="." method="_on_Player_finished_stretching"]
+[connection signal="passed_tutorial" from="Level/Player" to="." method="_on_Player_passed_tutorial"]
+[connection signal="lost" from="InterfaceLayer/Roulette" to="." method="_on_Roulette_lost"]
 [connection signal="game_started" from="InterfaceLayer/Intro" to="." method="_on_Intro_game_started"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
-[connection signal="timeout" from="SpawnStartTimer" to="." method="_on_SpawnStartTimer_timeout"]
-[connection signal="timeout" from="TutorialTimer" to="." method="_on_Timer_timeout"]

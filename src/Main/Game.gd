@@ -66,12 +66,7 @@ func _on_SpawnTimer_timeout():
 	spawn_random()
 
 
-func _on_SpawnStartTimer_timeout():
-	$SpawnTimer.start()
-
-
 func start_fight():
-	$SpawnStartTimer.start()
 	_state = State.FIGHT
 	$InterfaceLayer/Roulette.set_visible(false)
 	$Level/CasinoAmbient.stop()
@@ -91,15 +86,19 @@ func _on_Player_died():
 	$InterfaceLayer/GameOver.set_values($InterfaceLayer/Roulette/Chips.get_stake(), $InterfaceLayer/PauseMenu/ColorRect/CoinsCounter.coins_collected)
 
 
-func _on_Timer_timeout():
-	$Tutorial.visible = false
-
-
 func _on_Player_finished_stretching():
-	$TutorialTimer.start()
 	$Tutorial.visible = true
 	$Level/Music.play()
 
 
 func _on_Intro_game_started():
 	$InterfaceLayer/Intro.hide()
+
+
+func _on_Roulette_lost():
+	start_fight()
+
+
+func _on_Player_passed_tutorial():
+	$Tutorial.visible = false
+	$SpawnTimer.start()

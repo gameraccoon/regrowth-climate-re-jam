@@ -6,6 +6,7 @@ extends Actor
 signal collect_coin()
 signal finished_stretching()
 signal died()
+signal passed_tutorial()
 
 const FLOOR_DETECT_DISTANCE = 20.0
 
@@ -19,6 +20,7 @@ onready var sound_jump = $Jump
 onready var left_hitbox = $LeftHit
 onready var right_hitbox = $RightHit
 onready var hitbox = $Hitbox
+var hit_count = 0
 
 var health = 10
 var start_anim_finished = false
@@ -120,6 +122,9 @@ func _physics_process(_delta):
 	var animation = get_new_animation(is_shooting)
 	if (animation != animation_player.current_animation or direction_changed) and shoot_timer.is_stopped():
 		if is_shooting:
+			hit_count += 1
+			if hit_count == 2:
+				emit_signal("passed_tutorial")
 			shoot_timer.start()
 		animation_player.play(animation)
 

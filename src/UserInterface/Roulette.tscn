@@ -1,10 +1,181 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/theme/user_interface.tres" type="Theme" id=1]
 [ext_resource path="res://assets/art/background/circle.png" type="Texture" id=2]
 [ext_resource path="res://assets/art/background/table.png" type="Texture" id=3]
 [ext_resource path="res://src/Objects/chips.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/UserInterface/Roulette.gd" type="Script" id=5]
+[ext_resource path="res://assets/art/background/ball.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=3]
+resource_name = "bet_black"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chips:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1, 1.001 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 550.494, 358.955 ), Vector2( 600, 254 ), Vector2( 600.305, 318.956 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_end_bet"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "bet_red"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chips:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 1, 1.001 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 550.494, 358.955 ), Vector2( 600, 318 ), Vector2( 600.305, 318.956 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_end_bet"
+} ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "black"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("table/CircleRotation/ballRotation:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.6, 3 ),
+"transitions": PoolRealArray( 1, 0.378929, 2.29739 ),
+"update": 0,
+"values": [ 280.0, 180.0, 290.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("table/CircleRotation/ballRotation/ball:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "red"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("table/CircleRotation/ballRotation:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.6, 3 ),
+"transitions": PoolRealArray( 1, 0.378929, 2.29739 ),
+"update": 0,
+"values": [ 167.8, 0.0, 180.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("table/CircleRotation/ballRotation/ball:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "reset_bet"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chips:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 550.494, 358.955 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "rotate"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("table/circle:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 3 ),
+"transitions": PoolRealArray( 0.5, 1.23114 ),
+"update": 0,
+"values": [ -360.0, 360.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_end_roll"
+} ]
+}
 
 [node name="Roulette" type="Control"]
 pause_mode = 2
@@ -35,51 +206,26 @@ scale = Vector2( 0.508231, 0.508231 )
 texture = ExtResource( 3 )
 
 [node name="circle" type="Sprite" parent="table"]
-position = Vector2( -305.22, -6.10352e-05 )
+position = Vector2( -302, 0 )
+rotation = 4.47518
+scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
-offset = Vector2( 2, -2 )
+offset = Vector2( 3, -2 )
+
+[node name="CircleRotation" type="Node2D" parent="table"]
+position = Vector2( -302, 0 )
+
+[node name="ballRotation" type="Node2D" parent="table/CircleRotation"]
+rotation = 4.04551
+scale = Vector2( 1.96761, 1.96761 )
+
+[node name="ball" type="Sprite" parent="table/CircleRotation/ballRotation"]
+position = Vector2( 70.6231, 50.3981 )
+texture = ExtResource( 6 )
 
 [node name="Chips" parent="." instance=ExtResource( 4 )]
-position = Vector2( 550.494, 358.955 )
+position = Vector2( 600, 254 )
 scale = Vector2( 0.3, 0.3 )
-
-[node name="BlackBtn" type="Button" parent="."]
-margin_left = 641.226
-margin_top = 225.438
-margin_right = 746.226
-margin_bottom = 275.438
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="BlackBtn"]
-margin_left = 7.92224
-margin_top = 5.28152
-margin_right = 98.9222
-margin_bottom = 43.2815
-text = "Black"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RedBtn" type="Button" parent="."]
-margin_left = 642.336
-margin_top = 290.219
-margin_right = 746.336
-margin_bottom = 336.219
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="RedBtn"]
-margin_left = 24.4103
-margin_top = 3.32867
-margin_right = 81.4103
-margin_bottom = 41.3287
-text = "Red"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Panel" type="Panel" parent="."]
 margin_left = 23.2134
@@ -96,6 +242,56 @@ text = "Chips: 1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BallChipsAnimation" type="AnimationPlayer" parent="."]
+anims/bet_black = SubResource( 3 )
+anims/bet_red = SubResource( 4 )
+anims/black = SubResource( 1 )
+anims/red = SubResource( 2 )
+anims/reset_bet = SubResource( 5 )
+
+[node name="CircleAnimation" type="AnimationPlayer" parent="."]
+anims/rotate = SubResource( 6 )
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="BlackBtn" type="Button" parent="Buttons"]
+margin_left = 641.226
+margin_top = 225.438
+margin_right = 746.226
+margin_bottom = 275.438
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Buttons/BlackBtn"]
+margin_left = 7.92224
+margin_top = 5.28152
+margin_right = 98.9222
+margin_bottom = 43.2815
+text = "Black"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RedBtn" type="Button" parent="Buttons"]
+margin_left = 642.336
+margin_top = 290.219
+margin_right = 746.336
+margin_bottom = 336.219
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Buttons/RedBtn"]
+margin_left = 24.4103
+margin_top = 3.32867
+margin_right = 81.4103
+margin_bottom = 41.3287
+text = "Red"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_all_completed"]
-[connection signal="pressed" from="BlackBtn" to="." method="_on_BlackBtn_pressed"]
-[connection signal="pressed" from="RedBtn" to="." method="_on_RedBtn_pressed"]
+[connection signal="pressed" from="Buttons/BlackBtn" to="." method="_on_BlackBtn_pressed"]
+[connection signal="pressed" from="Buttons/RedBtn" to="." method="_on_RedBtn_pressed"]

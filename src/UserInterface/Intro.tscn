@@ -4,12 +4,12 @@
 [ext_resource path="res://src/UserInterface/Intro.gd" type="Script" id=2]
 
 [node name="Intro" type="Control"]
-margin_right = 801.0
-margin_bottom = 479.0
+anchor_right = 1.00125
+anchor_bottom = 0.997917
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]

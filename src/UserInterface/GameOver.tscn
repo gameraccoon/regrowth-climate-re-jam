@@ -4,8 +4,8 @@
 [ext_resource path="res://src/UserInterface/GameOver.gd" type="Script" id=2]
 
 [node name="GameOver" type="Control"]
-margin_right = 803.0
-margin_bottom = 481.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -14,10 +14,12 @@ __meta__ = {
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.784314 )
-margin_left = 43.0
-margin_top = 24.0
-margin_right = 753.0
-margin_bottom = 453.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 18.0
+margin_top = 15.0
+margin_right = -22.0
+margin_bottom = -22.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

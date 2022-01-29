@@ -189,8 +189,10 @@ __meta__ = {
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -401.0
-margin_right = 401.0
+margin_left = -401.755
+margin_top = 3.01883
+margin_right = 400.245
+margin_bottom = 3.01883
 color = Color( 0, 0, 0, 0.294118 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -262,11 +264,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Buttons/BlackBtn"]
-margin_left = 7.92224
-margin_top = 5.28152
-margin_right = 98.9222
-margin_bottom = 43.2815
+anchor_right = 1.0
+anchor_bottom = 1.0
 text = "Black"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -281,14 +283,35 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Buttons/RedBtn"]
-margin_left = 24.4103
-margin_top = 3.32867
-margin_right = 81.4103
-margin_bottom = 41.3287
+anchor_right = 1.0
+anchor_bottom = 1.0
 text = "Red"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SkipBtn" type="Button" parent="Buttons"]
+visible = false
+margin_left = 641.226
+margin_top = 351.474
+margin_right = 746.226
+margin_bottom = 401.474
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Buttons/SkipBtn"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Skip"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_all_completed"]
 [connection signal="pressed" from="Buttons/BlackBtn" to="." method="_on_BlackBtn_pressed"]
 [connection signal="pressed" from="Buttons/RedBtn" to="." method="_on_RedBtn_pressed"]
+[connection signal="pressed" from="Buttons/SkipBtn" to="." method="_on_SkipBtn_pressed"]

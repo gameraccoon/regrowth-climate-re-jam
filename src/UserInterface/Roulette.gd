@@ -1,6 +1,6 @@
 extends Control
 
-signal lost()
+signal lost(amount)
 
 var bet_red = false
 var roll_red = false
@@ -11,6 +11,9 @@ func _ready():
 	$Panel/ChipsCountLabel.set_text("Chips 1")
 	$BallChipsAnimation.play("reset_bet")
 	$table/CircleRotation/ballRotation/ball.hide()
+	
+	if Autoload.skip_intro:
+		$Buttons/SkipBtn.show()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,11 +22,13 @@ func _ready():
 
 
 func _on_BlackBtn_pressed():
+	$Buttons/SkipBtn.hide()
 	bet_red = false
 	bet()
 
 
 func _on_RedBtn_pressed():
+	$Buttons/SkipBtn.hide()
 	bet_red = true
 	bet()
 
@@ -56,7 +61,7 @@ func won():
 
 
 func lost():
-	emit_signal("lost")
+	emit_signal("lost", $Chips.get_stake())
 
 
 func _end_bet():
@@ -67,3 +72,9 @@ func _end_roll():
 		won()
 	else:
 		lost()
+
+
+func _on_SkipBtn_pressed():
+	while randi() % 2 == 0:
+		$Chips.set_stake($Chips.get_stake() * 2)
+	lost()

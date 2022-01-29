@@ -98,7 +98,7 @@ func _on_Intro_game_started():
 	$InterfaceLayer/Intro.hide()
 
 
-func _on_Roulette_lost():
+func _on_Roulette_lost(amount):
 	start_fight()
 
 

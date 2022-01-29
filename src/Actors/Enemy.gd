@@ -24,7 +24,6 @@ var target = null
 # This function is called when the scene enters the scene tree.
 # We can initialize variables here.
 func _ready():
-	speed.x = speed.x + randf() * 100
 	_velocity.x = speed.x * _pointing_right
 
 # Physics process is a built-in loop in Godot.
@@ -53,7 +52,7 @@ func _physics_process(_delta):
 
 	if _state == State.WALKING:
 		# We only update the y value of _velocity as we want to handle the horizontal movement ourselves.
-		_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
+		position.x += _velocity.x * _delta
 
 		# We flip the Sprite depending on which way the enemy is moving.
 		if _velocity.x > 0:

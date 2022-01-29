@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/UserInterface/PauseMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Main/Game.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/UserInterface/GameOver.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/art/background/PressAD.png" type="Texture" id=8]
 [ext_resource path="res://src/UserInterface/Intro.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/audio/sfx/punch.wav" type="AudioStream" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 417.966, 10 )
@@ -18,7 +19,7 @@ pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="room" type="Sprite" parent="."]
-position = Vector2( 33.9978, 840.997 )
+position = Vector2( 30.8201, 844.175 )
 scale = Vector2( 0.28948, 0.28948 )
 texture = ExtResource( 5 )
 
@@ -44,10 +45,10 @@ anchor_bottom = 1.0
 visible = false
 
 [node name="LeftSpawner" type="Node2D" parent="."]
-position = Vector2( -288.468, 930.148 )
+position = Vector2( -250, 976 )
 
 [node name="RightSpawner" type="Node2D" parent="."]
-position = Vector2( 280.777, 923.479 )
+position = Vector2( 250, 976 )
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
@@ -74,6 +75,12 @@ texture = ExtResource( 8 )
 
 [node name="DifficultyTimer" type="Timer" parent="."]
 wait_time = 10.0
+
+[node name="StartMusicTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DebugSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
 [connection signal="died" from="Level/Player" to="." method="_on_Player_died"]
 [connection signal="finished_stretching" from="Level/Player" to="." method="_on_Player_finished_stretching"]
 [connection signal="passed_tutorial" from="Level/Player" to="." method="_on_Player_passed_tutorial"]
@@ -81,3 +88,4 @@ wait_time = 10.0
 [connection signal="game_started" from="InterfaceLayer/Intro" to="." method="_on_Intro_game_started"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 [connection signal="timeout" from="DifficultyTimer" to="." method="_on_DifficultyTimer_timeout"]
+[connection signal="timeout" from="StartMusicTimer" to="." method="_on_StartMusicTimer_timeout"]

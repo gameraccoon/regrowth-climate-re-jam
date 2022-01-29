@@ -1,4 +1,4 @@
 extends Node
 
 
-var skip_intro = false
+var skip_intro = true

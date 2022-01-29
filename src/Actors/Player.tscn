@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/player/strong guy/Strong Guy Attacks/Strong_Guy_Attacks_SpriteSheet.png" type="Texture" id=2]
-[ext_resource path="res://assets/audio/sfx/jump.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/sfx/shoot.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/art/player/strong guy/Strong Guy Idle/Strong_Guy_Idle_SpriteSheet.png" type="Texture" id=4]
 [ext_resource path="res://assets/art/ui/touch_button_left.png" type="Texture" id=5]
 [ext_resource path="res://assets/art/ui/touch_button_right.png" type="Texture" id=6]

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/art/enemy/nes_brawler/NES_Renegade_Walk_3_strip4.png" type="Texture" id=1]
 [ext_resource path="res://assets/audio/sfx/explode.wav" type="AudioStream" id=2]
-[ext_resource path="res://assets/audio/sfx/hit.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/sfx/punch.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/art/enemy/nes_brawler/NES_Renegade_Punch_1.png" type="Texture" id=4]
 [ext_resource path="res://src/Actors/Enemy.gd" type="Script" id=5]
 [ext_resource path="res://assets/art/enemy/nes_brawler/NES_Renegade_Knock_Out.png" type="Texture" id=6]
@@ -105,7 +105,7 @@ tracks/3/path = NodePath("Hit:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/keys = {
 "times": PoolRealArray( 0.00999999 ),
 "transitions": PoolRealArray( 1 ),
@@ -279,6 +279,4 @@ scale = Vector2( 1.6, 1.6 )
 
 [node name="Sprite" type="Sprite" parent="SpriteScaler"]
 material = SubResource( 5 )
-texture = ExtResource( 1 )
-hframes = 4
-frame = 3
+texture = ExtResource( 4 )

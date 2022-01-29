@@ -26,6 +26,8 @@ var health = 10
 var start_anim_finished = false
 var is_died = false
 
+var time_start = 0 # for debug
+
 func _ready():
 	pass
 
@@ -51,7 +53,7 @@ func collided_left():
 # - If you split the character into a state machine or more advanced pattern,
 #   you can easily move individual functions.
 func _physics_process(_delta):
-	if not get_parent().get_parent().is_fight():
+	if not get_parent().get_parent().is_ready_to_fight():
 		return
 
 	if not start_anim_finished:
@@ -99,6 +101,10 @@ func _physics_process(_delta):
 		is_shooting = true
 
 	if is_shooting:
+		# debug start
+		print(OS.get_ticks_msec() - time_start)
+		# debug end
+		
 		var hit_hitbox = right_hitbox if sprite.scale.x > 0 else left_hitbox
 		var closestEnemy = null
 		var closestDistanceSqr = 9999999.0
@@ -116,6 +122,11 @@ func _physics_process(_delta):
 	$Sprite/IdleSprite.modulate = Color(1, 1, 1)
 	for body in hitbox.get_overlapping_bodies():
 		if body is Enemy and not body.is_dead():
+			# debug start
+			body.queue_free()
+			continue
+			# debug end
+
 			health -= 1
 			sound_jump.play()
 			$Sprite/IdleSprite.modulate = Color(1, 0, 0)
@@ -184,6 +195,7 @@ func get_new_animation(is_shooting = false):
 func _start_animation_finished():
 	start_anim_finished = true
 	emit_signal("finished_stretching")
+	time_start = OS.get_ticks_msec() + int(round((250/150.0+1.2)*1000))
 
 
 func _death_animation_finished():

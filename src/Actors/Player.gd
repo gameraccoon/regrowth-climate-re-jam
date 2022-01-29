@@ -97,13 +97,21 @@ func _physics_process(_delta):
 		is_shooting = true
 	elif Input.is_action_just_pressed("move_right" + action_suffix):
 		is_shooting = true
-		
+
 	if is_shooting:
 		var hit_hitbox = right_hitbox if sprite.scale.x > 0 else left_hitbox
+		var closestEnemy = null
+		var closestDistanceSqr = 9999999.0
 		for body in hit_hitbox.get_overlapping_bodies():
-			if body is Enemy:
-				body.destroy()
-				emit_signal("collect_coin")
+			if body is Enemy and !body.is_dead():
+				var distSqr = position.distance_squared_to(body.position)
+				if distSqr < closestDistanceSqr:
+					closestDistanceSqr = distSqr
+					closestEnemy = body
+
+		if closestEnemy != null:
+			closestEnemy.destroy()
+			emit_signal("collect_coin")
 
 	$Sprite/IdleSprite.modulate = Color(1, 1, 1)
 	for body in hitbox.get_overlapping_bodies():

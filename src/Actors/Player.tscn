@@ -385,4 +385,4 @@ shape = SubResource( 5 )
 
 [node name="Hit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = 18.0
+volume_db = 10.0

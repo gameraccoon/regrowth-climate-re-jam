@@ -153,7 +153,7 @@ func _physics_process(_delta):
 
 func get_direction():
 	return Vector2(
-		Input.get_action_strength("move_right" + action_suffix) - Input.get_action_strength("move_left" + action_suffix),
+		1 if Input.is_action_just_pressed("move_right" + action_suffix) else (-1 if Input.is_action_just_pressed("move_left" + action_suffix) else 0),
 		-1 if is_on_floor() and Input.is_action_just_pressed("jump" + action_suffix) else 0
 	)
 

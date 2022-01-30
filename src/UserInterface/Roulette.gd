@@ -16,11 +16,6 @@ func _ready():
 		$Buttons/SkipBtn.show()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func _on_BlackBtn_pressed():
 	$Buttons/SkipBtn.hide()
 	bet_red = false
@@ -78,3 +73,6 @@ func _on_SkipBtn_pressed():
 	while randi() % 2 == 0:
 		$Chips.set_stake($Chips.get_stake() * 2)
 	lost()
+
+func focus():
+	$Buttons/BlackBtn.grab_focus()

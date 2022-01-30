@@ -68,6 +68,7 @@ func _physics_process(_delta):
 func destroy():
 	_state = State.DEAD
 	_velocity = Vector2.ZERO
+	queue_free()
 
 
 func get_new_animation():
@@ -75,7 +76,8 @@ func get_new_animation():
 	if _state == State.WALKING:
 		animation_new = "walk"
 	elif _state == State.DEAD:
-		animation_new = "destroy"
+		#animation_new = "destroy"
+		pass
 	elif _state == State.ATTACKING:
 		animation_new = "attack"
 	return animation_new

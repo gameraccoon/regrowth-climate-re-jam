@@ -72,7 +72,7 @@ func spawn_random(dir_left, speed):
 		enemy.set_position($RightSpawner.position)
 		enemy.reverse()
 	enemy.target = $Level/Player
-	enemy.speed.x = enemy_speed
+	enemy.speed.x = speed
 	#enemy.speed.x = enemy.speed.x + randf() * 100
 	$Enemies.add_child(enemy)
 
@@ -134,6 +134,7 @@ func _on_Player_finished_stretching():
 
 func _on_Intro_game_started():
 	$InterfaceLayer/Intro.hide()
+	$InterfaceLayer/Roulette.focus()
 
 
 func _on_Roulette_lost(amount):

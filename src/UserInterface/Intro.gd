@@ -20,6 +20,7 @@ func _ready():
 		emit_signal("game_started")
 		$TextFillTimer.stop()
 	text = texts[0]
+	$StartButton.grab_focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

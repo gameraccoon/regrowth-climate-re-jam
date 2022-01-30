@@ -252,13 +252,20 @@ anims/reset_bet = SubResource( 5 )
 [node name="CircleAnimation" type="AnimationPlayer" parent="."]
 anims/rotate = SubResource( 6 )
 
-[node name="Buttons" type="Node2D" parent="."]
+[node name="Buttons" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BlackBtn" type="Button" parent="Buttons"]
 margin_left = 641.226
 margin_top = 225.438
 margin_right = 746.226
 margin_bottom = 275.438
+focus_neighbour_bottom = NodePath("../RedBtn")
+focus_next = NodePath("../RedBtn")
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -298,6 +305,8 @@ margin_left = 641.226
 margin_top = 351.474
 margin_right = 746.226
 margin_bottom = 401.474
+focus_neighbour_top = NodePath("../RedBtn")
+focus_previous = NodePath("../RedBtn")
 __meta__ = {
 "_edit_use_anchors_": false
 }

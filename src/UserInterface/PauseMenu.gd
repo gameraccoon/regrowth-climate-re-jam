@@ -33,6 +33,7 @@ func close():
 
 func open():
 	show()
+	$ColorRect/CenterContainer/VBoxContainer/HitCheckBox.set_pressed(Autoload.hit_sound)
 	resume_button.grab_focus()
 
 	tween.interpolate_property(self, "modulate:a", 0.0, 1.0,
@@ -56,3 +57,12 @@ func _on_QuitButton_pressed():
 func _on_Tween_all_completed():
 	if modulate.a < 0.5:
 		hide()
+
+
+
+func _on_SoundSlider_value_changed(value):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)
+
+
+func _on_HitCheckBox_toggled(button_pressed):
+	Autoload.hit_sound = button_pressed

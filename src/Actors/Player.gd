@@ -116,13 +116,15 @@ func _physics_process(_delta):
 		if closestEnemy != null:
 			closestEnemy.destroy()
 			emit_signal("collect_coin")
+			if Autoload.hit_sound:
+				$Hit.play()
 			hp_score += 1
 			if hp_score >= next_hp_score:
 				hp_score = 0
 				health += 1
 				if health > max_health:
 					health = max_health
-				
+
 
 	$Sprite/IdleSprite.modulate = Color(1, 1, 1)
 	for body in hitbox.get_overlapping_bodies():

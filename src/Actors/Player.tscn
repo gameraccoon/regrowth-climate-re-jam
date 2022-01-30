@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/Actors/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/player/strong guy/Strong Guy Attacks/Strong_Guy_Attacks_SpriteSheet.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/art/player/strong guy/Strong Guy Idle/Strong_Guy_Idle_SpriteSheet.png" type="Texture" id=4]
 [ext_resource path="res://assets/art/ui/touch_button_left.png" type="Texture" id=5]
 [ext_resource path="res://assets/art/ui/touch_button_right.png" type="Texture" id=6]
+[ext_resource path="res://assets/audio/sfx/punch.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/art/player/strong guy/Normal Guy Transforms/Normal_Guy_Transforms_SpriteSheet.png" type="Texture" id=9]
 [ext_resource path="res://assets/art/player/strong guy/Strong Guy Dies/Strong_Guy_Dies_SpriteSheet.png" type="Texture" id=10]
 
@@ -354,11 +355,9 @@ visibility_mode = 1
 
 [node name="IdleSprite" type="Sprite" parent="Sprite"]
 position = Vector2( 0, -12 )
-texture = ExtResource( 2 )
-offset = Vector2( 4, 0 )
-vframes = 5
-hframes = 4
-frame = 2
+texture = ExtResource( 9 )
+vframes = 6
+hframes = 5
 
 [node name="LeftHit" type="Area2D" parent="."]
 collision_layer = 2
@@ -383,3 +382,7 @@ collision_mask = 2
 [node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, -11 )
 shape = SubResource( 5 )
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = 18.0

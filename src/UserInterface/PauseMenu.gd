@@ -16,6 +16,7 @@ onready var tween = $Tween
 
 func _ready():
 	hide()
+	$ColorRect/CenterContainer/VBoxContainer/SoundSlider.set_value(Autoload.volume)
 
 
 func close():
@@ -62,6 +63,7 @@ func _on_Tween_all_completed():
 
 func _on_SoundSlider_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)
+	Autoload.volume = value
 
 
 func _on_HitCheckBox_toggled(button_pressed):

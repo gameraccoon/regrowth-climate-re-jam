@@ -297,13 +297,11 @@ tracks/5/keys = {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 5.00647, 11.0275 )
 
-[sub_resource type="CapsuleShape2D" id=6]
-radius = 5.71332
-height = 9.19903
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 18.8235, 10 )
 
-[sub_resource type="CapsuleShape2D" id=7]
-radius = 6.23941
-height = 8.9636
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 18.9223, 10 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 20
@@ -367,7 +365,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="LeftHitShape" type="CollisionShape2D" parent="LeftHit"]
-position = Vector2( -13.5707, -9.46859 )
+position = Vector2( -24.343, -10.5458 )
 shape = SubResource( 6 )
 
 [node name="RightHit" type="Area2D" parent="."]
@@ -375,7 +373,7 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="RightHitShape" type="CollisionShape2D" parent="RightHit"]
-position = Vector2( 13.877, -9.77487 )
+position = Vector2( 24.4955, -10.2365 )
 shape = SubResource( 7 )
 
 [node name="Hitbox" type="Area2D" parent="."]

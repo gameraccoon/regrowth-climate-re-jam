@@ -105,7 +105,7 @@ tracks/3/path = NodePath("Hit:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
-tracks/3/enabled = false
+tracks/3/enabled = true
 tracks/3/keys = {
 "times": PoolRealArray( 0.00999999 ),
 "transitions": PoolRealArray( 1 ),
@@ -269,6 +269,7 @@ shape = SubResource( 4 )
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
+volume_db = 20.0
 
 [node name="Explode" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
@@ -279,4 +280,5 @@ scale = Vector2( 1.6, 1.6 )
 
 [node name="Sprite" type="Sprite" parent="SpriteScaler"]
 material = SubResource( 5 )
-texture = ExtResource( 4 )
+texture = ExtResource( 1 )
+hframes = 4

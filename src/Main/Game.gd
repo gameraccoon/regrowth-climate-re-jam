@@ -6,6 +6,7 @@ enum State {
 	ROULETTE,
 	WAIT_FIGHT,
 	FIGHT,
+	SUDDEN_DEATH,
 	GAME_OVER
 }
 
@@ -63,7 +64,7 @@ func _unhandled_input(event):
 		get_tree().set_input_as_handled()
 
 
-func spawn_random(dir_left):
+func spawn_random(dir_left, speed):
 	var enemy = enemyScene.instance()
 	if dir_left:
 		enemy.set_position($LeftSpawner.position)
@@ -77,7 +78,7 @@ func spawn_random(dir_left):
 
 
 func _on_SpawnTimer_timeout():
-	spawn_random(randi() % 2 == 0)
+	spawn_random(randi() % 2 == 0, enemy_speed + randf() * 200.0)
 
 
 func _process(delta):
@@ -88,13 +89,20 @@ func _process(delta):
 		_time_passed += delta
 		var new_time_hit = _time_passed * bit_resolution_mult
 		while _next_enemy_idx_left < len(_hit_time_left) and new_time_hit > _hit_time_left[_next_enemy_idx_left]:
-			spawn_random(true)
+			spawn_random(true, enemy_speed)
 			#$DebugSound.play()
 			_next_enemy_idx_left += 1
 		while _next_enemy_idx_right < len(_hit_time_right) and new_time_hit > _hit_time_right[_next_enemy_idx_right]:
-			spawn_random(false)
+			spawn_random(false, enemy_speed)
 			#$DebugSound.play()
 			_next_enemy_idx_right += 1
+		
+		if _next_enemy_idx_left >= len(_hit_time_left) and _next_enemy_idx_right >= len(_hit_time_right):
+			_state = State.SUDDEN_DEATH
+			$SpawnTimer.start()
+			$DifficultyTimer.start()
+			Autoload.till_the_end = true
+	
 
 
 func start_fight():
@@ -104,7 +112,7 @@ func start_fight():
 
 
 func is_ready_to_fight():
-	return _state == State.FIGHT or _state == State.WAIT_FIGHT
+	return _state == State.FIGHT or _state == State.WAIT_FIGHT or _state == State.SUDDEN_DEATH
 
 
 func _on_Player_died():
@@ -138,8 +146,6 @@ func _on_Player_passed_tutorial():
 		#_time_passed = -(time_to_reach+start_delay)+0.05
 		$Tutorial.visible = false
 		_state = State.FIGHT
-		#$SpawnTimer.start()
-		#$DifficultyTimer.start()
 
 
 func _on_DifficultyTimer_timeout():

@@ -22,7 +22,10 @@ onready var right_hitbox = $RightHit
 onready var hitbox = $Hitbox
 var hit_count = 0
 
-var health = 5
+var health = 4
+var max_health = 10
+var hp_score = 0
+var next_hp_score = 40
 var start_anim_finished = false
 var is_died = false
 
@@ -113,6 +116,13 @@ func _physics_process(_delta):
 		if closestEnemy != null:
 			closestEnemy.destroy()
 			emit_signal("collect_coin")
+			hp_score += 1
+			if hp_score >= next_hp_score:
+				hp_score = 0
+				health += 1
+				if health > max_health:
+					health = max_health
+				
 
 	$Sprite/IdleSprite.modulate = Color(1, 1, 1)
 	for body in hitbox.get_overlapping_bodies():

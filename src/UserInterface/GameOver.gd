@@ -31,4 +31,7 @@ func _on_Button_pressed():
 
 
 func _on_ShowButtonTimer_timeout():
-	$Button.show()
+	if !Autoload.till_the_end:
+		$Button.show()
+	else:
+		$EndGame.show()

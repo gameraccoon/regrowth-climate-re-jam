@@ -144,5 +144,13 @@ __meta__ = {
 [node name="ShowButtonTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="EndGame" type="Label" parent="."]
+visible = false
+margin_left = 197.291
+margin_top = 311.298
+margin_right = 758.291
+margin_bottom = 349.298
+text = "That was it, thank you for playing"
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="timeout" from="ShowButtonTimer" to="." method="_on_ShowButtonTimer_timeout"]
